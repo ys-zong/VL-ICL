@@ -1,0 +1,15 @@
+torch==2.0.1
+torchvision
+torchaudio
+xformers>=0.0.20
+omegaconf
+hydra-core
+pyrootutils
+transformers==4.30.2
+flask
+gradio
+timm
+diffusers==0.20.2
+accelerate
+einops
+sentencepiece

@@ -1,0 +1,7 @@
+transformers==4.32.0
+torch==2.0.1
+sentencepiece
+protobuf
+accelerate==0.27.2
+pandas
+pillow

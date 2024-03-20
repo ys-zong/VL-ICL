@@ -1,0 +1,4 @@
+open-flamingo[eval]
+pandas
+transformers==4.28.1
+python-Levenshtein

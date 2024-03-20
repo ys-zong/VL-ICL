@@ -1,0 +1,7 @@
+torch
+torchvision
+transformers==4.33.2
+timm==0.4.12
+sentencepiece==0.1.99 
+einops
+

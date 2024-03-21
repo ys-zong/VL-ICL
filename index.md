@@ -9,7 +9,7 @@ authors:
   - "Timothy Hospedales"
 affiliations:
   - "University of Edinburgh"
-paper: https://arxiv.org/abs/
+paper: https://arxiv.org/abs/2403.13164
 code: https://github.com/ys-zong/VL-ICL
 data: https://huggingface.co/datasets/ys-zong/VL-ICL
 ---
@@ -64,7 +64,7 @@ The main results for VL-ICL Bench are presented in the figure above including a 
 @article{zong2024vlicl,
   title={VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning},
   author={Zong, Yongshuo and Bohdal, Ondrej and Hospedales Timothy},
-  journal={arXiv},
+  journal={arXiv preprint arXiv:2403.13164},
   year={2024}
 }
 ```

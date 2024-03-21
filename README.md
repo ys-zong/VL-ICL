@@ -1,6 +1,6 @@
 # VL-ICL
 
-[[Paper]]() [[Data]](https://huggingface.co/datasets/ys-zong/VL-ICL)
+[[Webpage]](https://ys-zong.github.io/VL-ICL/)[[Paper]](https://arxiv.org/abs/2403.13164) [[Data]](https://huggingface.co/datasets/ys-zong/VL-ICL)
 
 VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning.
 
@@ -58,4 +58,14 @@ CUDA_VISIBLE_DEVICES=0 python T2I_inference.py --engine emu1-gen --n_shot 0 1 2 
 ### Evaluation
 ```bash
 CUDA_VISIBLE_DEVICES=0 python T2I_evaluate.py --dataset open_t2i_mi  --engine seed-llama
+```
+
+## Citation
+```
+@article{zong2024vlicl,
+  title={VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning},
+  author={Zong, Yongshuo and Bohdal, Ondrej and Hospedales, Timothy},
+  journal={arXiv preprint arXiv:2403.13164},
+  year={2024}
+}
 ```

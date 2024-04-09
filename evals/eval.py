@@ -5,7 +5,7 @@ import os
 
 
 def eval_scores(results, dataset, model=None, tokenizer=None, processor=None):
-    if dataset in ['textocr', 'operator_induction', 'clevr', 
+    if dataset in ['textocr', 'operator_induction', 'clevr', 'open_mi',
                     'operator_induction_interleaved']:
         score = exact_match(results, dataset)
     elif dataset == 'matching_mi':

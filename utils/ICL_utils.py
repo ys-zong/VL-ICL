@@ -63,14 +63,6 @@ def select_demonstration(support_meta, n_shot, dataset, query=None):
         # get support set with same latents
         n_shot_support = [x for x in support_meta if (x[latent_var] == latent and x['latent'] == latent_var and x['task'] == task)]
         n_shot_support = copy.deepcopy(random.sample(n_shot_support, n_shot))
-        
-    elif dataset == 'clevr':
-        n_shot_support_raw = random.sample(support_meta, n_shot)
-        n_shot_support = copy.deepcopy(n_shot_support_raw)
-        for i in n_shot_support:
-            n_shot_support['question'] = f"Image 1: {n_shot_support['question1']}\nImage 2: {n_shot_support['question2']}"
-            n_shot_support['image'] = [n_shot_support['image1'], n_shot_support['image2']]
-    
     else:
         n_shot_support = random.sample(support_meta, n_shot)
     return n_shot_support

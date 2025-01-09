@@ -21,6 +21,16 @@ def load_i2t_model(engine, args=None):
         tokenizer, model, image_processor, context_len = load_llava_model(model_path='liuhaotian/llava-v1.6-vicuna-7b', model_base=None, model_name='llava',
                                                                           device_map="cuda", torch_dtype=torch.bfloat16)
         processor = image_processor
+    elif 'llava-onevision-0.5b' in engine:
+        from llava.model.builder import load_pretrained_model as load_llava_model
+        tokenizer, model, image_processor, context_len = load_llava_model(model_path='lmms-lab/llava-onevision-qwen2-0.5b-ov', model_base=None, attn_implementation="flash_attention_2",
+                                                                          model_name='llava_qwen', device_map="cuda", torch_dtype=torch.bfloat16)
+        processor = image_processor
+    elif 'llava-onevision-7b' in engine:
+        from llava.model.builder import load_pretrained_model as load_llava_model
+        tokenizer, model, image_processor, context_len = load_llava_model(model_path='lmms-lab/llava-onevision-qwen2-7b-ov', model_base=None, attn_implementation="flash_attention_2",
+                                                                          model_name='llava_qwen', device_map="cuda", torch_dtype=torch.bfloat16)
+        processor = image_processor
     elif engine == 'qwen-vl-chat':
         from transformers.generation import GenerationConfig
         tokenizer = transformers.AutoTokenizer.from_pretrained("Qwen/Qwen-VL-Chat", trust_remote_code=True)

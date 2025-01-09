@@ -39,6 +39,12 @@ def ICL_I2T_inference(args, engine, dataset, model, tokenizer, query,
         input_token_len = inputs['input_ids'].shape[1]
         predicted_answers = tokenizer.decode(pred[:, input_token_len:].cpu()[0], skip_special_tokens=True)
     elif 'llava' in engine:
+        from llava.conversation import conv_templates
+        from llava.mm_utils import (
+            process_images,
+            tokenizer_image_token,
+        )
+        from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN
         images = []
         input_text = f"{task_instruction}\n"
         for i in range(len(n_shot_support)):
@@ -58,7 +64,7 @@ def ICL_I2T_inference(args, engine, dataset, model, tokenizer, query,
                 ]
             )
         image_tensor = image_tensor.half().cuda()
-        conv_mode = 'llava_v1'
+        conv_mode = 'llava_v1' if 'onevision' not in engine else 'qwen_1_5'
         conv = conv_templates[conv_mode].copy()
         conv.append_message(conv.roles[0], input_text)
         conv.append_message(conv.roles[1], None)
@@ -72,9 +78,7 @@ def ICL_I2T_inference(args, engine, dataset, model, tokenizer, query,
                 max_new_tokens=max_new_tokens,
                 min_new_tokens=1,
                 )
-        input_token_len = input_ids.shape[1]
-        predicted_answers = tokenizer.batch_decode(generated_ids[:, input_token_len:], skip_special_tokens=True)[0]
-
+        predicted_answers = tokenizer.batch_decode(generated_ids[:, :], skip_special_tokens=True)[0]
     elif 'flamingo' in engine:
         images = []
         input_text = f"{task_instruction}\n"

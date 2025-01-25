@@ -6,13 +6,15 @@ from evals import eval
 metrics = {
     "open_t2i_mi": "Acc",
     "cobsat": "Acc",
+    "fast_attr_t2i": "Acc",
+    "fast_count_t2i": "Acc",
 }
 
 def parse_args():
     parser = argparse.ArgumentParser(description='I2T ICL Evaluation')
 
     parser.add_argument('--dataDir', default='./VL-ICL', type=str, help='Data directory.')
-    parser.add_argument('--dataset', default='open_t2i_mi', type=str, choices=['open_t2i_mi', 'cobsat'])
+    parser.add_argument('--dataset', default='open_t2i_mi', type=str, choices=['open_t2i_mi', 'cobsat', 'fast_attr_t2i', 'fast_count_t2i'])
     parser.add_argument("--engine", "-e", choices=['gill', 'emu2-gen', 'emu1-gen', 'seed-llama-14b', 'seed-llama-8b'],
                         default=["gill"], nargs="+")
     parser.add_argument('--max-new-tokens', default=40, type=int, help='Max new tokens for generation.')
@@ -22,7 +24,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    if "open_t2i_mi" in args.dataset or "cobsat" in args.dataset:
+    if args.dataset in ['open_t2i_mi', 'cobsat', 'fast_attr_t2i', 'fast_count_t2i']:
         from llava.model.builder import load_pretrained_model as load_llava_model
         import torch
         tokenizer, model, image_processor, context_len = load_llava_model(model_path='liuhaotian/llava-v1.6-vicuna-7b', model_base=None, model_name='llava')

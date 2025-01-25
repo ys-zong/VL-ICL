@@ -36,7 +36,7 @@ def select_demonstration(support_meta, n_shot, dataset, query=None):
             n_shot_support.append(n_shot_support_raw[i]['same'])
             n_shot_support.append(n_shot_support_raw[i]['diff'])
     
-    elif dataset == 'open_t2i_mi':
+    elif dataset == 'open_t2i_mi' or dataset == 'fast_attr_t2i' or dataset == 'fast_count_t2i':
         query_class = query['task_label']
         other_class = random.choice([cls for cls in query['classes'] if cls != query_class])
         order_keys = [query_class, other_class] if random.choice([True, False]) else [other_class, query_class]
@@ -49,6 +49,16 @@ def select_demonstration(support_meta, n_shot, dataset, query=None):
                     support = {
                         'image': query['support'][key]['images'][i], 
                         'question': f'Generate a {key}'
+                    }
+                elif dataset == 'fast_attr_t2i':
+                    support = {
+                        'image': query['support'][key]['images'][i], 
+                        'question': f"Generate a {query['support'][key]['captions'][i]}"
+                    }
+                elif dataset == 'fast_count_t2i':
+                    support = {
+                        'image': query['support'][key]['images'][i], 
+                        'question': f"Generate {query['support'][key]['captions'][i]}"
                     }
                 else:
                     support = {

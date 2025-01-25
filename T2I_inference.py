@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='T2I Evaluation')
 
     parser.add_argument('--dataDir', default='./VL-ICL', type=str, help='Data directory.')
-    parser.add_argument('--dataset', default='open_t2i_mi', type=str, choices=['open_t2i_mi', 'cobsat'])
+    parser.add_argument('--dataset', default='open_t2i_mi', type=str, choices=['open_t2i_mi', 'cobsat', 'fast_attr_t2i', 'fast_count_t2i'])
     parser.add_argument('--n_shot', default=[0, 1, 2, 4, 8], nargs="+", help='Number of support images.')
 
     parser.add_argument("--engine", "-e", choices=['emu2-gen', 'emu1-gen', 'gill', 'seed-llama-14b', 'seed-llama-8b'],

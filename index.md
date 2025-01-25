@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title:  "VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning"
+title:  "VL-ICL Bench: The Devil in the Details of Multimodal In-Context Learning"
 authors:
   - "Yongshuo Zong*, "
   - "Ondrej Bohdal*, "
@@ -28,7 +28,9 @@ Large language models (LLMs) famously exhibit emergent in-context learning (ICL)
 
 ![Dataset](static/image/dataset.png)
 
-Figure: Illustration of the different tasks in VL-ICL Bench. Image-to-text tasks are in the first three rows, while text-to-image tasks are in the bottom row. Image-to-text tasks in the third row do reasoning on interleaved image-text inputs.
+Figure: Illustration of the different tasks in VL-ICL Bench. Image-to-text tasks are in the first
+three rows, while text-to-image tasks are in the bottom two rows. Image-to-text tasks in the third
+row do reasoning on interleaved image-text inputs.
 
 
 
@@ -62,7 +64,7 @@ The main results for VL-ICL Bench are presented in the figure above including a 
 ## Citation
 ```
 @article{zong2024vlicl,
-  title={VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning},
+  title={VL-ICL Bench: The Devil in the Details of Multimodal In-Context Learning},
   author={Zong, Yongshuo and Bohdal, Ondrej and Hospedales, Timothy},
   journal={arXiv preprint arXiv:2403.13164},
   year={2024}

@@ -2,7 +2,7 @@
 
 [[Webpage]](https://ys-zong.github.io/VL-ICL/)[[Paper]](https://arxiv.org/abs/2403.13164) [[Data]](https://huggingface.co/datasets/ys-zong/VL-ICL)
 
-[ICLR 2025] VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning.
+**[ICLR 2025] VL-ICL Bench: The Devil in the Details of Benchmarking Multimodal In-Context Learning.**
 
 
 ## Data Preparation

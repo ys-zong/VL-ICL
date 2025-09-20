@@ -209,6 +209,50 @@ def ICL_I2T_inference(args, engine, dataset, model, tokenizer, query,
                                        do_sample=False)
         input_token_len = inputs['input_ids'].shape[1]
         predicted_answers = tokenizer.decode(generated_ids[:, input_token_len:].cpu()[0], skip_special_tokens=True)
+    
+    
+    elif 'qwen2.5-vl' in engine:
+        from qwen_vl_utils import process_vision_info
+        
+        content = []
+        content.append({"type": "text", "text": task_instruction})
+
+        # support examples
+        for item in n_shot_support:
+            for image_path in item['image']:
+                pil_image = Image.open(os.path.join(data_path, image_path)).convert("RGB")
+                content.append({"type": "image", "image": pil_image})
+            content.append({"type": "text", "text": item['question']})
+            content.append({"type": "text", "text": f"Answer: {format_answer(item['answer'], dataset, query)}"})
+        
+        # query
+        for q_img in query_images:
+            content.append({"type": "image", "image": q_img})
+
+        content.append({"type": "text", "text": query_text + "\nAnswer:"})
+        
+        messages = [{"role": "user", "content": content}]
+        text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        image_inputs, video_inputs = process_vision_info(messages) # video_inputs will be empty
+        inputs = processor(
+            text=[text],
+            images=image_inputs,
+            videos=video_inputs,
+            padding=True,
+            return_tensors="pt",
+        )
+        inputs = inputs.to(model.device)
+
+        with torch.no_grad():
+            generated_ids = model.generate(**inputs, max_new_tokens=max_new_tokens, min_new_tokens=1)
+
+        input_token_len = inputs.input_ids.shape[1]
+        generated_ids_trimmed = generated_ids[:, input_token_len:]
+        
+        predicted_answers = processor.batch_decode(
+            generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
+        )[0]
+    
     elif 'gpt4v' in engine:
         import openai
         from openai import OpenAI

@@ -23,7 +23,7 @@ def parse_args():
                                                                              'clevr','operator_induction_interleaved', 'matching_mi',])
     parser.add_argument("--engine", "-e", choices=["openflamingo", "otter-llama", "llava16-7b", "qwen-vl", "qwen-vl-chat", 'internlm-x2', 
                                                    'emu2-chat', 'idefics-9b-instruct', 'idefics-80b-instruct', 'gpt4v', 'llava-onevision-7b',
-                                                   'llava-onevision-0.5b'],
+                                                   'llava-onevision-0.5b', "qwen2.5-vl-7b"],
                         default=["llava16-7b"], nargs="+")
     parser.add_argument('--max-new-tokens', default=15, type=int, help='Max new tokens for generation.')
     parser.add_argument('--n_shot', default=[0, 1, 2, 4, 8], nargs="+", help='Number of support images.')
